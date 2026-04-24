@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Search</title>
+    <style>
+        /* General body styling,background image */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.yeococinajaponesa.mx/wp-content/uploads/2022/03/Yeo_PuntoNovo_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Main layout container.center content horizontally */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 60px;
+            gap: 40px;
+        }
+
+        /* Styling for both the form and result sections */
+        .form-container,
+        .results {
+            width: 420px;
+            background-color: rgba(255, 255, 255, 0.96); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); 
+        }
+
+        /* Headings style */
+        h2, h3 {
+            text-align: center;
+            color: #d35400; /* orange color */
+        }
+
+        /* Label styling */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        /* Text input styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #d35400;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for submit button */
+        input[type="submit"]:hover {
+            background-color: #d35400;
+        }
+
+        /* Styling for the "Back to Login" button */
+        .logout-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* Styling for warning or feedback messages */
+        .message {
+            text-align: center;
+            color: #ff0000; /* red color */
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Results list styling */
+        .results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results li {
+            background-color: #f8f8f8;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- Search form section -->
+    <div class="form-container">
+        <h2>Search for Restaurants</h2>
+
+        <!-- Show a message if there is one -->
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <!-- Restaurant search form -->
+        <form method="POST" action="/search">
+            <label>Name:</label>
+            <input type="text" name="name">
+
+            <label>Borough:</label>
+            <input type="text" name="borough">
+
+            <label>Cuisine:</label>
+            <input type="text" name="cuisine">
+
+            <label>Grade:</label>
+            <input type="text" name="grade">
+
+            <label>Street:</label>
+            <input type="text" name="street">
+
+            <input type="submit" value="Search">
+        </form>
+
+        <!-- Link to return to login page -->
+        <a href="/" class="logout-btn">&#8592; Back to Login</a>
+    </div>
+
+    <!-- Show results if they exist -->
+    {% if results %}
+    <div class="results">
+        <h3>Results:</h3>
+        <ul>
+            <!-- Loop to display each restaurant result -->
+            {% for restaurant in results %}
+            <li>{{ restaurant['name'] }} - {{ restaurant['borough'] }} - {{ restaurant['cuisine'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

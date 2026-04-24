@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Restaurant Finder</title>
+    <style>
+        /* Main styling for the page layout and background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff4e6;
+            background-image: url('https://qul.imgix.net/a0db4c08-ded6-4297-a4c9-597d5957f2e0/456244_sld.jpg'); /* Page background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Title section at the top of the page */
+        .main-title {
+            font-size: 32px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Wrapper to center the form */
+        .form-wrapper {
+            text-align: center;
+        }
+
+        /* Circle icon above the form */
+        .form-icon {
+            background-color: #e67e22;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            margin-bottom: -40px;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* White inner circle that holds the user icon */
+        .inner-circle {
+            background-color: #ffffff;
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* User icon inside the inner circle */
+        .inner-circle img {
+            width: 36px;
+            height: 36px;
+        }
+
+        /* Form container box */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 350px;
+            padding: 60px 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* Form heading */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for labels */
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        /* Input fields for email and password */
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for the button */
+        input[type="submit"]:hover {
+            background-color: #cf711f;
+        }
+
+        /* Paragraph and link styles */
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main title of the page -->
+    <div class="main-title">Restaurant Search Portal</div>
+
+    <!-- Wrapper for the registration form -->
+    <div class="form-wrapper">
+
+        <!-- User icon circle above the form --><div class="form-icon">
+            <div class="inner-circle">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon">
+            </div>
+        </div>
+
+        <!-- Main form container -->
+        <div class="form-container">
+            <h2>Register</h2>
+
+            <!-- Registration form with email and password -->
+            <form method="POST" action="/register">
+                <label>Email</label>
+                <input type="email" name="username" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <input type="submit" value="Sign Up">
+            </form>
+
+            <!-- Conditional display for success or error message -->
+            {% if message %}{% if "successfully" in message %}
+                <p style="color: green;">{{ message }}</p>
+            {% else %}
+                <p style="color: red;">{{ message }}</p>
+            {% endif %}
+            {% endif %}
+
+            <!-- Link to go back to login page -->
+            <p>Already have an account? <a href="/">Back to Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
